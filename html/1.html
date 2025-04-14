@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Form Validation</title>
+    <script>
+        function validateForm() {
+            let name = document.forms["myForm"]["username"].value;
+            let email = document.forms["myForm"]["email"].value;
+            let age = document.forms["myForm"]["age"].value;
+            if (name == "") {
+                alert("Name must be filled out");
+                return false;
+            }
+
+            // Simple email regex check
+            let emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+            if (!emailPattern.test(email)) {
+                alert("Enter a valid email address");
+                return false;
+            }
+
+            if (isNaN(age) || age < 1 || age > 100) {
+                alert("Enter a valid age between 1 and 100");
+                return false;
+            }
+
+            alert("Form submitted successfully!");
+            return true;
+        }
+    </script>
+</head>
+<body>
+    <h2>User Information Form</h2>
+    <form name="myForm" onsubmit="return validateForm()">
+        Name: <input type="text" name="username"><br><br>
+        Email: <input type="text" name="email"><br><br>
+        Age: <input type="text" name="age"><br><br>
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>
